@@ -3,6 +3,7 @@ install:
 # Build the website
 script:
   - binary/hugo --theme=even
+  # - echo 'juneyuan.github.io/blog' > public/CNAME
 # Deploy to GitHub pages
 deploy:
   provider: pages
