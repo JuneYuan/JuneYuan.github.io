@@ -45,3 +45,11 @@ leet 842 Split Array into Fibonacci Sequence, 未 AC
 ## 0912
 
 设计循环双端队列
+
+## 0913
+
+求二叉树的最大深度
+
+### 思路
+
+跟遍历类似，也是可递归、可迭代
