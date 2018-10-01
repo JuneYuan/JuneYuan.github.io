@@ -6,6 +6,14 @@ draft: false
 
 每天解一题。一千零一夜太长，先从一百零一夜做起。
 
+# October 2018
+
+## 1001
+
+查找子串在父串中第一次出现的位置。
+
+写了一个非 KMP 的解法。
+
 # September 2018
 
 ## 0905
@@ -152,3 +160,10 @@ key: 整数 `x` 是2的幂 <==> `x & (x - 1) == 0`
 用队列实现栈。
 
 跟上一题类似的是，一个队列用来进出元素、另一个用作中转站；不同的是，上一题中转的时候将所有元素都放入了中转站，而这一题作中转的时候则保留了最后一个元素，并且负责进出元素的队列和作为中转站的队列，是交替变换的。
+
+more: http://www.cnblogs.com/kaituorensheng/archive/2013/03/02/2939690.html
+
+## 0930
+
+Determine the number of bits required to flip if you want to convert integer n to integer m. 
+（相当于求两个数不同的比特位数。）
