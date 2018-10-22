@@ -98,7 +98,22 @@ O(nlgn) 实现。
 
 ## 1020
 
+字母异位词分组。
 
+brute-force solution...
+
+## 1021
+
+同上题。
+
+排序 + hashmap 降低时间复杂度。
+
+## 1022
+
+Valid Anagram.
+
+method1: hashmap; 
+method2: sort.
 
 
 # September 2018
