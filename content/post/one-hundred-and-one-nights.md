@@ -115,6 +115,17 @@ Valid Anagram.
 method1: hashmap; 
 method2: sort.
 
+## 1023
+
+NULL
+（累且困，睡了）
+
+## 1024
+
+Next Permutation.
+
+字典序算法。
+
 
 # September 2018
 
