@@ -126,6 +126,18 @@ Next Permutation.
 
 字典序算法。
 
+## 1025
+
+给定数组，求其元素的全排列。
+
+两种递归写法。一种思路是，枚举每个位置可能的元素；另一种是枚举每个元素可能的位置。
+
+## 1026
+
+Previous Permutation.
+
+1024 `Next Permutation` 的对偶问题，解法一样。
+
 
 # September 2018
 
