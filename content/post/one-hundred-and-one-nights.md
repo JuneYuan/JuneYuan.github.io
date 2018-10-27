@@ -136,7 +136,13 @@ Next Permutation.
 
 Previous Permutation.
 
-1024 `Next Permutation` 的对偶问题，解法一样。
+`Next Permutation` 的对偶问题，解法一样。
+
+## 1027
+
+求给定排列的字典序编号。
+
+用一个具体例子，如 `[4, 3, 2, 1]`, 从高位到低位（或相反方向）分析计算，容易找到规律，再转化为代码即可。
 
 
 # September 2018
