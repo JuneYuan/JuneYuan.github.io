@@ -144,6 +144,15 @@ Previous Permutation.
 
 用一个具体例子，如 `[4, 3, 2, 1]`, 从高位到低位（或相反方向）分析计算，容易找到规律，再转化为代码即可。
 
+## 1028
+
+NULL
+（too occupied by the messy room）
+
+## 1029
+
+最后一个单词的长度。
+
 
 # September 2018
 
