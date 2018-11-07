@@ -22,6 +22,23 @@ draft: false
 
 Space Replacement (' ' -> '%20')
 
+## 1104
+
+NULL
+
+## 1105
+
+NULL
+
+## 1106
+
+NULL
+
+## 1107
+
+Permutation Sequence (给定正整数 `n` 和 `k`, 求 `1 ~ n` 的整数组成的第 `k` 个排列。)
+
+处理过程有点类似进制转换。
 
 # October 2018
 
