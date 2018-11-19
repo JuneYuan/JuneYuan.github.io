@@ -48,6 +48,14 @@ The same as 1101.
 
 最长回文子串。
 
+## 1110～1118
+
+NULL * 9
+
+## 1119
+
+Remove Duplicates from Sorted List II (None of the duplicates is remained).
+
 
 # October 2018
 
