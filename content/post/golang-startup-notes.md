@@ -1,7 +1,7 @@
 ---
 title: "golang 入门学习笔记"
 date: 2018-10-29T23:10:21+08:00
-draft: false
+draft: true 
 ---
 
 ## 一、基础概念：工作区、GOROOT、GOPATH 等
