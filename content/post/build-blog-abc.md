@@ -20,7 +20,7 @@ Hugo 是要安装的，所以首先搜索教程。homebrew 最方便，但安装
 
 - Travis build 失败。一通 google 也未有所获，后来仔细看报错信息，发现需要将主题的 `exampleSite` 目录下的 `config.toml` 文件 copy 到自己站点根目录，而这一步没有做是因为跟着[官网快速搭建指南](https://gohugo.io/getting-started/quick-start/)走，config.toml 只写了极少的4行，并且添加 theme 时也是拿来即用，甚至忘了看人家的 README.
 
-- localhost:1313 效果正常，但 github page 页面却显示不出主题的效果（看上去”全裸“），以及点击博客文章提示 404. 填坑花了几个小时 🙃 ，排查了各种可能：Travis 日志输出、主题版本、主题引入方式（起初是从 github 仓库 download 至本地，然后改为 [git submodule][1] 链接到作者的仓库）、检查页面源代码是否缺少 div 以及 css 等……最后找到问题，是因为 google 到别人用 Hexo 遇到[类似问题][2]，通过配置 `CNAME` 解决，这才受到启发，去检查自己 `config.toml` 文件的 `baseURL`, 发现没有加仓库名为后缀。
+- localhost:1313 效果正常，但 github page 页面却显示不出主题的效果（看上去“全裸”），以及点击博客文章提示 404. 填坑花了几个小时 🙃 ，排查了各种可能：Travis 日志输出、主题版本、主题引入方式（起初是从 github 仓库 download 至本地，然后改为 [git submodule][1] 链接到作者的仓库）、检查页面源代码是否缺少 div 以及 css 等……最后找到问题，是因为 google 到别人用 Hexo 遇到[类似问题][2]，通过配置 `CNAME` 解决，这才受到启发，去检查自己 `config.toml` 文件的 `baseURL`, 发现没有加仓库名为后缀。
 
 总结：
 
