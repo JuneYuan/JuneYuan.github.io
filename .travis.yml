@@ -1,5 +1,11 @@
 install:
   - rm -rf public || exit 0
+
+before_script:
+  - ssh -T git@github.com
+  - ssh -T git@github.com > ssh_output.txt 2>&1
+  - git submodule update --init --recursive --verbose
+
 # Build the website
 script:
   - binary/hugo --theme=even
