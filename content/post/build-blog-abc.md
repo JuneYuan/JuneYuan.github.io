@@ -34,7 +34,7 @@ Hugo 是要安装的，所以首先搜索教程。homebrew 最方便，但安装
 
 - [使用 Hugo 搭建博客](https://segmentfault.com/a/1190000012975914)
 
-- [使用 Hugo _ Travis CI + Github Pages 搭建静态博客 | 这是看过几篇中写得最清晰的](https://devtian.me/post/crate-website-use-hugo/)
+- [使用 Hugo _ Travis CI + Github Pages 搭建静态博客 | 这是看过几篇中写得最清晰的](https://change2hao.github.io/posts/website-use-hugo/)
 
 
   [1]: https://stackoverflow.com/a/9357474/3762421
