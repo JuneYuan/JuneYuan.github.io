@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Blog 搭建过程 - June Yuan&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="June" />
+  <meta name="description" content="记录下自己的搭建过程和遇到的问题，不是教程，教程见下文 Reference. 要点 网上看了一些选型取舍，决定使用 Hugo &#43; Travis CI &#43; GitHub Pages 工具组合。三者都是第一次接触, 动手之" />
+
+  <meta name="keywords" content="blog, JuneYuan, hugo" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://juneyuan.github.io/blog/post/build-blog-abc/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/blog/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Blog 搭建过程" />
+<meta property="og:description" content="记录下自己的搭建过程和遇到的问题，不是教程，教程见下文 Reference. 要点 网上看了一些选型取舍，决定使用 Hugo &#43; Travis CI &#43; GitHub Pages 工具组合。三者都是第一次接触, 动手之" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://juneyuan.github.io/blog/post/build-blog-abc/" /><meta property="article:published_time" content="2018-09-02T09:06:29&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-02T09:06:29&#43;08:00"/>
+<meta itemprop="name" content="Blog 搭建过程">
+<meta itemprop="description" content="记录下自己的搭建过程和遇到的问题，不是教程，教程见下文 Reference. 要点 网上看了一些选型取舍，决定使用 Hugo &#43; Travis CI &#43; GitHub Pages 工具组合。三者都是第一次接触, 动手之">
+
+
+<meta itemprop="datePublished" content="2018-09-02T09:06:29&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-02T09:06:29&#43;08:00" />
+<meta itemprop="wordCount" content="857">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Blog 搭建过程"/>
+<meta name="twitter:description" content="记录下自己的搭建过程和遇到的问题，不是教程，教程见下文 Reference. 要点 网上看了一些选型取舍，决定使用 Hugo &#43; Travis CI &#43; GitHub Pages 工具组合。三者都是第一次接触, 动手之"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Blog 搭建过程</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-02 </span>
+        
+        <span class="more-meta"> 857 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#要点">要点</a></li>
+<li><a href="#踩坑">踩坑</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<p>记录下自己的搭建过程和遇到的问题，不是教程，教程见下文 Reference.</p>
+
+<h2 id="要点">要点</h2>
+
+<p>网上看了一些选型取舍，决定使用 Hugo + Travis CI + GitHub Pages 工具组合。三者都是第一次接触, 动手之前完全不知其然更不知其所以然，因此费了不少周折。</p>
+
+<p>Hugo 是要安装的，所以首先搜索教程。homebrew 最方便，但安装以后发现，想使用的主题不支持 homebrew 默认版本，遂改为下载特定版本来安装。</p>
+
+<p>然后是 GitHub Pages. 有个问题开始一直不明白：需要专门为 GitHub Pages 建一个 repo, 还是直接复用存放博客文本的 repo 就可以。结论是，Project Pages 不需要专门建 repo, 可以直接在 Project repo 的设置页面配置，而另一种 User/Organization Pages 似乎需要一个独立的 repo.</p>
+
+<p>最后是持续集成工具 Travis CI 的配置和使用。目的是，每次执行 git push 后 Travis 都能自动完成拉取最新代码、生成静态网站、以及发布到 GitHub Pages 的整个流程。为了让 Travis 能成功访问仓库代码，需要给它配置一个 Personal Access Token.</p>
+
+<h2 id="踩坑">踩坑</h2>
+
+<ul>
+<li><p>Travis build 失败。一通 google 也未有所获，后来仔细看报错信息，发现需要将主题的 <code>exampleSite</code> 目录下的 <code>config.toml</code> 文件 copy 到自己站点根目录，而这一步没有做是因为跟着<a href="https://gohugo.io/getting-started/quick-start/">官网快速搭建指南</a>走，config.toml 只写了极少的4行，并且添加 theme 时也是拿来即用，甚至忘了看人家的 README.</p></li>
+
+<li><p>localhost:1313 效果正常，但 github page 页面却显示不出主题的效果（看上去“全裸”），以及点击博客文章提示 404. 填坑花了几个小时 🙃 ，排查了各种可能：Travis 日志输出、主题版本、主题引入方式（起初是从 github 仓库 download 至本地，然后改为 <a href="https://stackoverflow.com/a/9357474/3762421">git submodule</a> 链接到作者的仓库）、检查页面源代码是否缺少 div 以及 css 等……最后找到问题，是因为 google 到别人用 Hexo 遇到<a href="http://m.codes51.com/itwd/4431697.html">类似问题</a>，通过配置 <code>CNAME</code> 解决，这才受到启发，去检查自己 <code>config.toml</code> 文件的 <code>baseURL</code>, 发现没有加仓库名为后缀。</p></li>
+</ul>
+
+<p>总结：</p>
+
+<p>看官网教程很多时候是准确而高效的，步骤既清晰又不啰嗦，关键点会作必要提示，也给遇到问题 debug 提供了很有用的线索。follow 网上的博客教程，看似浅显易懂，走了捷径，实际效果则不然，尤其是中文博客鱼龙混杂，有时候作者自己对所写内容并不够懂，看这样的教程就可能被误导或带偏。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><p><a href="https://blog.yuanbin.me/posts/2018-02/2018-02-23_23-19-29/">博客写作工作流 | 这里有讨论博客选型取舍</a></p></li>
+
+<li><p><a href="https://www.jianshu.com/p/f1b02e00f206">使用Hugo搭建GitHub个人博客</a></p></li>
+
+<li><p><a href="https://segmentfault.com/a/1190000012975914">使用 Hugo 搭建博客</a></p></li>
+
+<li><p><a href="https://change2hao.github.io/posts/website-use-hugo/">使用 Hugo _ Travis CI + Github Pages 搭建静态博客 | 这是看过几篇中写得最清晰的</a></p></li>
+</ul>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">June</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-09-02</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/blog/post/recursion-and-induction/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">借助数学归纳法理解递归</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="smartjune@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/juneyuan" class="iconfont icon-github" title="github"></a>
+  <a href="https://juneyuan.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2018 - 
+    2023
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">June</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/blog/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/blog/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/blog/dist/even.min.js?v=3.2.0"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

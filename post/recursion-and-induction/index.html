@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>借助数学归纳法理解递归 - June Yuan&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="June" />
+  <meta name="description" content="递归程序通常需要考虑两点： 递归步，也就是如何使原问题收敛。 基本条件（/终止条件），即返回值的斟酌； 以典型的二叉树遍历为例，前序遍历的递归代码" />
+
+  <meta name="keywords" content="blog, JuneYuan, hugo" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://juneyuan.github.io/blog/post/recursion-and-induction/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/blog/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="借助数学归纳法理解递归" />
+<meta property="og:description" content="递归程序通常需要考虑两点： 递归步，也就是如何使原问题收敛。 基本条件（/终止条件），即返回值的斟酌； 以典型的二叉树遍历为例，前序遍历的递归代码" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://juneyuan.github.io/blog/post/recursion-and-induction/" /><meta property="article:published_time" content="2018-09-04T07:52:19&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-04T07:52:19&#43;08:00"/>
+<meta itemprop="name" content="借助数学归纳法理解递归">
+<meta itemprop="description" content="递归程序通常需要考虑两点： 递归步，也就是如何使原问题收敛。 基本条件（/终止条件），即返回值的斟酌； 以典型的二叉树遍历为例，前序遍历的递归代码">
+
+
+<meta itemprop="datePublished" content="2018-09-04T07:52:19&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-04T07:52:19&#43;08:00" />
+<meta itemprop="wordCount" content="501">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="借助数学归纳法理解递归"/>
+<meta name="twitter:description" content="递归程序通常需要考虑两点： 递归步，也就是如何使原问题收敛。 基本条件（/终止条件），即返回值的斟酌； 以典型的二叉树遍历为例，前序遍历的递归代码"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">借助数学归纳法理解递归</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-04 </span>
+        
+        <span class="more-meta"> 501 words </span>
+        <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      <p>递归程序通常需要考虑两点：</p>
+
+<ol>
+<li>递归步，也就是如何使原问题收敛。</li>
+<li>基本条件（/终止条件），即返回值的斟酌；</li>
+</ol>
+
+<p>以典型的二叉树遍历为例，前序遍历的递归代码如下：</p>
+
+<pre><code class="language-java">public List&lt;Integer&gt; preorderTraverse(TreeNode root) {
+    List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
+    
+    if (root != null) {
+        result.add(root.val);
+        result.addAll(preorderTraverse(root.left));
+        result.addAll(preorderTraverse(root.right));
+    }
+
+    return result;
+}
+</code></pre>
+
+<p>即使没有受过数据结构与算法课程的洗礼，应该也容易理解这段代码：先添加根节点到遍历结果、再依次添加左、右子树的遍历结果。</p>
+
+<p>但是正因为看上去太简单，我有时候反而会疑惑，它究竟怎样完成了每个节点的遍历。</p>
+
+<p>这大概也是递归程序不好写和不好理解的地方。非递归的算法，通常只要把算法所表达的步骤“翻译”成代码，稍加调试，就可以正确运行了。可是这一点并不适用于递归算法，因为频繁的进栈出栈让它的中间步骤变得难以把握。以上述代码为例，<code>call(root.left)</code>, <code>call(root.right)</code> 果真能给出左右子树的前序遍历结果吗？</p>
+
+<p>其实，可以借助数学归纳法来回答这个问题。数学归纳法告诉我们，当一个命题对于 n = 1 成立，并且由 n = k 时命题成立的假设，能够推导出 n = k + 1 时也成立，那么这个命题为真。</p>
+
+<p>这样去看刚才的代码——当一棵树只有一个节点时，前序遍历就是它自己，代码的返回值显然正确。接着，假设它对于 root 的左右子树能给出正确结果，那么对于 root 的返回值自然就是正确的。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">June</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-09-04</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/blog/post/one-hundred-and-one-nights/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">一百零一夜</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/blog/post/build-blog-abc/">
+            <span class="next-text nav-default">Blog 搭建过程</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="smartjune@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/juneyuan" class="iconfont icon-github" title="github"></a>
+  <a href="https://juneyuan.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2018 - 
+    2023
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">June</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/blog/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/blog/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/blog/dist/even.min.js?v=3.2.0"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

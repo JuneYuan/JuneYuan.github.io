@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on June Yuan&#39;s Blog</title>
+    <link>https://juneyuan.github.io/blog/post/</link>
+    <description>Recent content in Posts on June Yuan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 15 Apr 2023 21:05:41 +0800</lastBuildDate>
+    
+	<atom:link href="https://juneyuan.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Week2315</title>
+      <link>https://juneyuan.github.io/blog/post/week2315/</link>
+      <pubDate>Sat, 15 Apr 2023 21:05:41 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/week2315/</guid>
+      <description>稍微整理这一周看过的书、文章，受到的启发。 《Go Web 编程》 主要是上周日晚粗略浏览的。周一早把剩的一点尾巴继续读完。 书名即内容，讲述怎么用 go 写一</description>
+    </item>
+    
+    <item>
+      <title>ARTS (0810-0816)</title>
+      <link>https://juneyuan.github.io/blog/post/arts-04/</link>
+      <pubDate>Sat, 15 Aug 2020 18:52:31 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/arts-04/</guid>
+      <description>Algorithm 链表排序 复杂度 O(n log n). Leetcode 题解1 - 归并排序(链表长度求中间节点) 可考虑快排/ 堆排/ 归并排序。这里用归并排序。 实现过程：按长度等分链表，断开为左</description>
+    </item>
+    
+    <item>
+      <title>ARTS (1209-1215)</title>
+      <link>https://juneyuan.github.io/blog/post/arts-03/</link>
+      <pubDate>Sat, 14 Dec 2019 22:54:43 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/arts-03/</guid>
+      <description>Algorithm Gopl Exercise 5.2 输入为 HTML 源码，要求用一个 map 记录其中每个 element name (e.g. p, div, span&amp;hellip;) 出现的次数。 https://github.com/JuneYuan/gopl.io/tree/master/ch5/ex_5_2 Review Elasticsearch from the Bottom Up, Part 1 这篇文章介绍单个 ES 节点是怎么处理数据写入、内容搜索的</description>
+    </item>
+    
+    <item>
+      <title>ARTS (1202-1208)</title>
+      <link>https://juneyuan.github.io/blog/post/arts-02/</link>
+      <pubDate>Sat, 14 Dec 2019 22:54:39 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/arts-02/</guid>
+      <description>Algorithm Problem Gopl Exercise 5.1 书中写了一个程序，给定一段 HTML 源码，能够提取出其中的 &amp;lt;a href&amp;gt; 链接内容。解析 HTML document 是直接的调用库函数，而这个程序做的事就是遍历库函数返回的 document</description>
+    </item>
+    
+    <item>
+      <title>ARTS (1125-1201)</title>
+      <link>https://juneyuan.github.io/blog/post/arts-01/</link>
+      <pubDate>Sun, 01 Dec 2019 14:56:26 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/arts-01/</guid>
+      <description>Algorithm 题目来源于 The Go Programming Language, Ch6.5 Example: Bit Vector Type 和后边的 Exercise. Bit Vector 简单说就是一个基于位操作、实现高效集合运算的数据结构： A bit hector uses a lice of unsigned integer values or &amp;ldquo;words&amp;rdquo;, each bit of which represents a possible element of</description>
+    </item>
+    
+    <item>
+      <title>Git Troubleshooting</title>
+      <link>https://juneyuan.github.io/blog/post/git-troubleshooting/</link>
+      <pubDate>Sun, 07 Apr 2019 21:52:09 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/git-troubleshooting/</guid>
+      <description>Q1. 相继执行 1) git rebase master 2) git rebase --skip 3) git rebase --abort 后，没有回到 1) 之前的状态，而是呈现 2) 之后的状态，有几个提交不见了。怎么才能恢复到 1) 之前？ 虽然当前分支由于某</description>
+    </item>
+    
+    <item>
+      <title>修改缓存逻辑引起的一个伪bug</title>
+      <link>https://juneyuan.github.io/blog/post/pseudo-bug-caused-by-cache/</link>
+      <pubDate>Sun, 02 Dec 2018 23:21:44 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/pseudo-bug-caused-by-cache/</guid>
+      <description>mainLogic 根据入参提供的地理位置点，计算并输出其所在 country, city, service providers 原始逻辑 i. 先读缓存(redis), 若命中则直接返回 ii. 若未命中，则需要根据两部分信息构造结</description>
+    </item>
+    
+    <item>
+      <title>一百零一夜</title>
+      <link>https://juneyuan.github.io/blog/post/one-hundred-and-one-nights/</link>
+      <pubDate>Sat, 08 Sep 2018 09:35:33 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/one-hundred-and-one-nights/</guid>
+      <description>每天解一题。一千零一夜太长，先从一百零一夜做起。 November 2018 1101 求给定排列的字典序编号(有重复元素)。 1027 题目的基础上，做去重处理，借鉴排列组合问题中的</description>
+    </item>
+    
+    <item>
+      <title>借助数学归纳法理解递归</title>
+      <link>https://juneyuan.github.io/blog/post/recursion-and-induction/</link>
+      <pubDate>Tue, 04 Sep 2018 07:52:19 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/recursion-and-induction/</guid>
+      <description>递归程序通常需要考虑两点： 递归步，也就是如何使原问题收敛。 基本条件（/终止条件），即返回值的斟酌； 以典型的二叉树遍历为例，前序遍历的递归代码</description>
+    </item>
+    
+    <item>
+      <title>Blog 搭建过程</title>
+      <link>https://juneyuan.github.io/blog/post/build-blog-abc/</link>
+      <pubDate>Sun, 02 Sep 2018 09:06:29 +0800</pubDate>
+      
+      <guid>https://juneyuan.github.io/blog/post/build-blog-abc/</guid>
+      <description>记录下自己的搭建过程和遇到的问题，不是教程，教程见下文 Reference. 要点 网上看了一些选型取舍，决定使用 Hugo + Travis CI + GitHub Pages 工具组合。三者都是第一次接触, 动手之</description>
+    </item>
+    
+  </channel>
+</rss>

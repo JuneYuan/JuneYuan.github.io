@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ARTS (1209-1215) - June Yuan&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="June" />
+  <meta name="description" content="Algorithm Gopl Exercise 5.2 输入为 HTML 源码，要求用一个 map 记录其中每个 element name (e.g. p, div, span&amp;hellip;) 出现的次数。 https://github.com/JuneYuan/gopl.io/tree/master/ch5/ex_5_2 Review Elasticsearch from the Bottom Up, Part 1 这篇文章介绍单个 ES 节点是怎么处理数据写入、内容搜索的" />
+
+  <meta name="keywords" content="blog, JuneYuan, hugo" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://juneyuan.github.io/blog/post/arts-03/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/blog/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="ARTS (1209-1215)" />
+<meta property="og:description" content="Algorithm Gopl Exercise 5.2 输入为 HTML 源码，要求用一个 map 记录其中每个 element name (e.g. p, div, span&hellip;) 出现的次数。 https://github.com/JuneYuan/gopl.io/tree/master/ch5/ex_5_2 Review Elasticsearch from the Bottom Up, Part 1 这篇文章介绍单个 ES 节点是怎么处理数据写入、内容搜索的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://juneyuan.github.io/blog/post/arts-03/" /><meta property="article:published_time" content="2019-12-14T22:54:43&#43;08:00"/>
+<meta property="article:modified_time" content="2019-12-14T22:54:43&#43;08:00"/>
+<meta itemprop="name" content="ARTS (1209-1215)">
+<meta itemprop="description" content="Algorithm Gopl Exercise 5.2 输入为 HTML 源码，要求用一个 map 记录其中每个 element name (e.g. p, div, span&hellip;) 出现的次数。 https://github.com/JuneYuan/gopl.io/tree/master/ch5/ex_5_2 Review Elasticsearch from the Bottom Up, Part 1 这篇文章介绍单个 ES 节点是怎么处理数据写入、内容搜索的">
+
+
+<meta itemprop="datePublished" content="2019-12-14T22:54:43&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-14T22:54:43&#43;08:00" />
+<meta itemprop="wordCount" content="711">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ARTS (1209-1215)"/>
+<meta name="twitter:description" content="Algorithm Gopl Exercise 5.2 输入为 HTML 源码，要求用一个 map 记录其中每个 element name (e.g. p, div, span&hellip;) 出现的次数。 https://github.com/JuneYuan/gopl.io/tree/master/ch5/ex_5_2 Review Elasticsearch from the Bottom Up, Part 1 这篇文章介绍单个 ES 节点是怎么处理数据写入、内容搜索的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ARTS (1209-1215)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-14 </span>
+        
+        <span class="more-meta"> 711 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#algorithm">Algorithm</a></li>
+<li><a href="#review">Review</a></li>
+<li><a href="#tip">Tip</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h2 id="algorithm">Algorithm</h2>
+
+<p>Gopl Exercise 5.2</p>
+
+<p>输入为 HTML 源码，要求用一个 map 记录其中每个 element name (e.g. <code>p</code>, <code>div</code>, <code>span</code>&hellip;) 出现的次数。</p>
+
+<p><a href="https://github.com/JuneYuan/gopl.io/tree/master/ch5/ex_5_2">https://github.com/JuneYuan/gopl.io/tree/master/ch5/ex_5_2</a></p>
+
+<h2 id="review">Review</h2>
+
+<p><a href="https://www.elastic.co/cn/blog/found-elasticsearch-from-the-bottom-up">Elasticsearch from the Bottom Up, Part 1</a></p>
+
+<p>这篇文章介绍单个 ES 节点是怎么处理数据写入、内容搜索的。后续还有一篇 Top Down 的文章，介绍 ES 分布式方面的问题。</p>
+
+<p>这一篇 Bottom Up, 从最基本的 Inverted Index 切入（文章形容它是个 &ldquo;versatile data structure&rdquo; =_=），阐明 ES 执行搜索的核心思想，就是把各种搜索问题都转化为 string prefix 类问题。给了一连串的例子，所以比较好理解。</p>
+
+<p>接下来介绍 ES 中数据写入的特点。总的来说，在 search speed, index compactness, indexing speed, 和 sla of visibility 这几个指标中，ES 更侧重前两个，而搜索更快、index size 更小，都以牺牲 indexing speed 为代价。因此 ES 的数据写入有别于其他常见的数据库：delete 操作其实是在一个 bitmap 上打标记，并非立刻执行删除；而 update 则是通过一个 delete + 一个 insert 实现的，并非真正的“更新”。(&ldquo;no in-place update of values&rdquo;)</p>
+
+<p>后边还介绍了ES 的数据组织方式，画出来大致是这样：</p>
+
+<p><img src="https://i.postimg.cc/0QNdFy2F/es-data-organization.png" alt="" /></p>
+
+<p>一个 document 写入 ES 时，首先要路由到某个 shard, 然后是 segment; 搜索则是先在每个 segment 上执行，然后合并结果。</p>
+
+<p>看完这篇文章，就能够理解 ES 中的基本概念了。也可见作者的功底，篇幅不长，却能把关键问题说得很清楚。ES 官方文档给我的感觉也是这样，简短，易懂，是文档中读起来比较轻松的了。另外，文中有不少外部链接，没顾得上细看，等以后遇到问题再回头来查阅。</p>
+
+<p><strong>Excerpt</strong></p>
+
+<blockquote>
+<ul>
+<li><p>The inverted index maps terms to documents (and possibly positions in the documents) containing the term.<br />
+一句话解释什么是 Inverted Index.</p></li>
+
+<li><p>the approach is the same: first, operate on the dictionary to find candidate terms, then on the corresponding occurrences, positions, etc.<br />
+一句话解释“搜索”是怎么做的。</p></li>
+
+<li><p>With an inverted index, we transform problems until they look like string-prefix problems.<br />
+&hellip;</p></li>
+
+<li><p>An index term is the unit of search. The terms we generate dictate what types of search we can (and cannot) efficiently do.<br />
+&hellip;<br />
+In terms of complexity, looking up terms by their prefix is O(log(n)), while finding terms by an arbitrary substring is O(n).<br />
+为什么要把各种问题都转化为字符串前缀匹配问题：数据结构决定了它最擅长处理这类问题（复杂度低）。</p></li>
+
+<li><p>A &ldquo;shard&rdquo; is the basic scaling unit for Elasticsearch.</p></li>
+
+<li><p>&hellip; a shard is actually a complete Lucene index.</p></li>
+</ul>
+</blockquote>
+
+<h2 id="tip">Tip</h2>
+
+<p>To Be Done.</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">June</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2019-12-14</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/blog/post/arts-04/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ARTS (0810-0816)</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/blog/post/arts-02/">
+            <span class="next-text nav-default">ARTS (1202-1208)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="smartjune@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/juneyuan" class="iconfont icon-github" title="github"></a>
+  <a href="https://juneyuan.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2018 - 
+    2023
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">June</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/blog/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/blog/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/blog/dist/even.min.js?v=3.2.0"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

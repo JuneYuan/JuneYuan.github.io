@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Git Troubleshooting - June Yuan&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="June" />
+  <meta name="description" content="Q1. 相继执行 1) git rebase master 2) git rebase --skip 3) git rebase --abort 后，没有回到 1) 之前的状态，而是呈现 2) 之后的状态，有几个提交不见了。怎么才能恢复到 1) 之前？ 虽然当前分支由于某" />
+
+  <meta name="keywords" content="blog, JuneYuan, hugo" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://juneyuan.github.io/blog/post/git-troubleshooting/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/blog/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Git Troubleshooting" />
+<meta property="og:description" content="Q1. 相继执行 1) git rebase master 2) git rebase --skip 3) git rebase --abort 后，没有回到 1) 之前的状态，而是呈现 2) 之后的状态，有几个提交不见了。怎么才能恢复到 1) 之前？ 虽然当前分支由于某" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://juneyuan.github.io/blog/post/git-troubleshooting/" /><meta property="article:published_time" content="2019-04-07T21:52:09&#43;08:00"/>
+<meta property="article:modified_time" content="2019-04-07T21:52:09&#43;08:00"/>
+<meta itemprop="name" content="Git Troubleshooting">
+<meta itemprop="description" content="Q1. 相继执行 1) git rebase master 2) git rebase --skip 3) git rebase --abort 后，没有回到 1) 之前的状态，而是呈现 2) 之后的状态，有几个提交不见了。怎么才能恢复到 1) 之前？ 虽然当前分支由于某">
+
+
+<meta itemprop="datePublished" content="2019-04-07T21:52:09&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-07T21:52:09&#43;08:00" />
+<meta itemprop="wordCount" content="803">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git Troubleshooting"/>
+<meta name="twitter:description" content="Q1. 相继执行 1) git rebase master 2) git rebase --skip 3) git rebase --abort 后，没有回到 1) 之前的状态，而是呈现 2) 之后的状态，有几个提交不见了。怎么才能恢复到 1) 之前？ 虽然当前分支由于某"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Git Troubleshooting</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-07 </span>
+        
+        <span class="more-meta"> 803 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#q1-相继执行-1-git-rebase-master-2-git-rebase-skip-3-git-rebase-abort-后-没有回到-1-之前的状态-而是呈现-2-之后的状态-有几个提交不见了-怎么才能恢复到-1-之前">Q1. 相继执行 1) <code>git rebase master</code> 2) <code>git rebase --skip</code> 3) <code>git rebase --abort</code> 后，没有回到 1) 之前的状态，而是呈现 2) 之后的状态，有几个提交不见了。怎么才能恢复到 1) 之前？</a></li>
+<li><a href="#q2-commit-丢了-怎么找回">Q2. commit “丢了”怎么找回？</a>
+<ul>
+<li><a href="#solution-1">Solution 1</a></li>
+<li><a href="#solution-2">Solution 2</a></li>
+</ul></li>
+<li><a href="#q3-高效解决冲突的办法">Q3. 高效解决冲突的办法？</a></li>
+<li><a href="#q4-git-rebase-master-时-由于当前分支对一处代码块的多次修改-导致要反复解决冲突-怎么办">Q4. <code>git rebase master</code> 时，由于当前分支对一处代码块的多次修改，导致要反复解决冲突，怎么办？</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h1 id="q1-相继执行-1-git-rebase-master-2-git-rebase-skip-3-git-rebase-abort-后-没有回到-1-之前的状态-而是呈现-2-之后的状态-有几个提交不见了-怎么才能恢复到-1-之前">Q1. 相继执行 1) <code>git rebase master</code> 2) <code>git rebase --skip</code> 3) <code>git rebase --abort</code> 后，没有回到 1) 之前的状态，而是呈现 2) 之后的状态，有几个提交不见了。怎么才能恢复到 1) 之前？</h1>
+
+<p>虽然当前分支由于某种原因缺失了几个 commit, 但是 git 本身并不会删除 commit, 它们还是会被记录下来。只要找到对应的 sha1 hash, 就有办法恢复。具体见 Q2.</p>
+
+<p><a href="https://blog.screensteps.com/recovering-from-a-disastrous-git-rebase-mistake">这篇文章</a>详细叙述了上述问题的发生和解决过程。</p>
+
+<p>// TODO figure out how <code>rebase --skip</code> works</p>
+
+<h1 id="q2-commit-丢了-怎么找回">Q2. commit “丢了”怎么找回？</h1>
+
+<p>“丢失”原因可能是不小心执行了 <code>git reset --hard</code> 、误删了一个分支，或者是不恰当的 rebase 等。</p>
+
+<h2 id="solution-1">Solution 1</h2>
+
+<p><code>git reflog</code></p>
+
+<p>官方文档描述：“当你在工作时， Git 会在后台保存一个引用日志(reflog)，引用日志记录了最近几个月你的 HEAD 和分支引用所指向的历史。使用 git reflog 可以查看引用日志。”</p>
+
+<p>Variation:</p>
+
+<p>git show HEAD@{5} // 查看仓库中 HEAD 在五次前的所指向的提交</p>
+
+<p>git show master@{yesterday} // 查看 master 分支昨天指向哪个提交</p>
+
+<p>git log -g // 查看类似于 git log 输出格式的引用日志信息</p>
+
+<h2 id="solution-2">Solution 2</h2>
+
+<p><code>vim .git/logs/HEAD</code></p>
+
+<p>// TODO .git/logs 记录的内容与 reflog 有何异同？</p>
+
+<h1 id="q3-高效解决冲突的办法">Q3. 高效解决冲突的办法？</h1>
+
+<p>以下步骤摘自 stackoverflow 的<a href="https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git">一则回答</a>——</p>
+
+<p>Try: <code>git mergetool</code></p>
+
+<p>Below is the sample procedure to use <code>vimdiff</code> for resolve merge conflicts.</p>
+
+<p><strong>Step 1</strong>: Run following commands in your terminal</p>
+
+<pre><code>git config merge.tool vimdiff
+git config merge.conflictstyle diff3
+git config mergetool.prompt false
+</code></pre>
+
+<p>This will set vimdiff as the default merge tool.</p>
+
+<p><strong>Step 2</strong>: Run following command in terminal</p>
+
+<pre><code>git mergetool
+</code></pre>
+
+<p><strong>Step 3</strong>: You will see a vimdiff display in following format</p>
+
+<pre><code>  +----------------------+
+  |       |      |       |
+  |LOCAL  |BASE  |REMOTE |
+  |       |      |       |
+  +----------------------+
+  |      MERGED          |
+  |                      |
+  +----------------------+
+</code></pre>
+
+<p>These 4 views are</p>
+
+<blockquote>
+<p>LOCAL – this is file from the current branch</p>
+
+<p>BASE – common ancestor, how file looked before both changes</p>
+
+<p>REMOTE – file you are merging into your branch</p>
+
+<p>MERGED – merge result, this is what gets saved in the repo</p>
+</blockquote>
+
+<p>You can navigate among these views using <code>ctrl+w</code>. You can directly reach MERGED view using <code>ctrl+w</code> followed by <code>j</code>.</p>
+
+<p><strong>Step 4</strong>. You could edit the MERGED view the following way</p>
+
+<p>If you want to get changes from REMOTE</p>
+
+<pre><code>:diffg RE  
+</code></pre>
+
+<p>If you want to get changes from BASE</p>
+
+<pre><code>:diffg BA  
+</code></pre>
+
+<p>If you want to get changes from LOCAL</p>
+
+<pre><code>:diffg LO 
+</code></pre>
+
+<p><strong>Step 5</strong>. Save, Exit, Commit and Clean up</p>
+
+<p><code>:wqa</code> save and exit from vi</p>
+
+<p><code>git commit -m &quot;message&quot;</code></p>
+
+<p><code>git clean</code> Remove extra files (e.g. *.orig) created by diff tool.</p>
+
+<h1 id="q4-git-rebase-master-时-由于当前分支对一处代码块的多次修改-导致要反复解决冲突-怎么办">Q4. <code>git rebase master</code> 时，由于当前分支对一处代码块的多次修改，导致要反复解决冲突，怎么办？</h1>
+
+<p>可以先把当前分支的多次修改整合为一个，再 rebase master, 这样就只需要 apply 一次修改、解决一次冲突。用的还是 <code>rebase</code> 命令，只不过参数不是 branch name, 而是 commit hash.</p>
+
+<p>假如当前分支的最近 5 次提交互相存在冲突，那么就执行：</p>
+
+<p><code>git rebase --interactive HEAD@{6}</code> // HEAD@{6} 代表上述 5 次冲突之前的 commit, 可以理解为“坐标原点”，基于这个点开始，整合之后的所有提交</p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/4786972/get-a-list-of-all-git-commits-including-the-lost-ones">怎么查看“丢了”的 commit</a></li>
+<li><a href="https://lostechies.com/joshuaflanagan/2010/09/03/use-gitk-to-understand-git/">Use gitk to understand git</a></li>
+<li><a href="https://segmentfault.com/a/1190000007748862">Git 合并多个commit</a></li>
+</ul>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">June</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2019-04-07</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/blog/post/arts-01/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ARTS (1125-1201)</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/blog/post/pseudo-bug-caused-by-cache/">
+            <span class="next-text nav-default">修改缓存逻辑引起的一个伪bug</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="smartjune@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/juneyuan" class="iconfont icon-github" title="github"></a>
+  <a href="https://juneyuan.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2018 - 
+    2023
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">June</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/blog/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/blog/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/blog/dist/even.min.js?v=3.2.0"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ARTS (0810-0816) - June Yuan&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="June" />
+  <meta name="description" content="Algorithm 链表排序 复杂度 O(n log n). Leetcode 题解1 - 归并排序(链表长度求中间节点) 可考虑快排/ 堆排/ 归并排序。这里用归并排序。 实现过程：按长度等分链表，断开为左" />
+
+  <meta name="keywords" content="blog, JuneYuan, hugo" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://juneyuan.github.io/blog/post/arts-04/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/blog/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="ARTS (0810-0816)" />
+<meta property="og:description" content="Algorithm 链表排序 复杂度 O(n log n). Leetcode 题解1 - 归并排序(链表长度求中间节点) 可考虑快排/ 堆排/ 归并排序。这里用归并排序。 实现过程：按长度等分链表，断开为左" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://juneyuan.github.io/blog/post/arts-04/" /><meta property="article:published_time" content="2020-08-15T18:52:31&#43;08:00"/>
+<meta property="article:modified_time" content="2020-08-15T18:52:31&#43;08:00"/>
+<meta itemprop="name" content="ARTS (0810-0816)">
+<meta itemprop="description" content="Algorithm 链表排序 复杂度 O(n log n). Leetcode 题解1 - 归并排序(链表长度求中间节点) 可考虑快排/ 堆排/ 归并排序。这里用归并排序。 实现过程：按长度等分链表，断开为左">
+
+
+<meta itemprop="datePublished" content="2020-08-15T18:52:31&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-15T18:52:31&#43;08:00" />
+<meta itemprop="wordCount" content="747">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ARTS (0810-0816)"/>
+<meta name="twitter:description" content="Algorithm 链表排序 复杂度 O(n log n). Leetcode 题解1 - 归并排序(链表长度求中间节点) 可考虑快排/ 堆排/ 归并排序。这里用归并排序。 实现过程：按长度等分链表，断开为左"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ARTS (0810-0816)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-15 </span>
+        
+        <span class="more-meta"> 747 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#algorithm">Algorithm</a>
+<ul>
+<li><a href="#链表排序">链表排序</a>
+<ul>
+<li><a href="#题解1-归并排序-链表长度求中间节点">题解1 - 归并排序(链表长度求中间节点)</a></li>
+<li><a href="#题解2-归并排序-快慢指针求中间节点">题解2 - 归并排序(快慢指针求中间节点)</a></li>
+<li><a href="#题解3-归并排序-自底向上">题解3 - 归并排序(自底向上)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h1 id="algorithm">Algorithm</h1>
+
+<h2 id="链表排序">链表排序</h2>
+
+<p>复杂度 O(n log n). <a href="https://leetcode.com/problems/sort-list/">Leetcode</a></p>
+
+<h3 id="题解1-归并排序-链表长度求中间节点">题解1 - 归并排序(链表长度求中间节点)</h3>
+
+<p>可考虑快排/ 堆排/ 归并排序。这里用归并排序。</p>
+
+<p>实现过程：按长度等分链表，断开为左右两截，对其分别排序，最后合并。</p>
+
+<p>细节：</p>
+
+<ul>
+<li>由于用到长度，所以预先求出长度，传参给辅助函数。</li>
+<li>链表分为两段，指针必须断开。</li>
+<li>处理好递归退出条件。</li>
+<li>merge 过程处理好指针。</li>
+</ul>
+
+<pre><code>// Top-down merge sort. Recursive implementation.
+func sortList(head *ListNode) *ListNode {
+    len := length(head)
+    if len &lt;= 1 { return head }
+
+    return mergeSort(head, len)
+}
+
+func length(head *ListNode) int {
+	var len int
+	for p := head; p != nil; p = p.Next {
+		len++
+	}
+	return len
+}
+
+func mergeSort(head *ListNode, len int) *ListNode {
+	fmt.Printf(&quot;mergeSort(%v, %v)\n&quot;, head, len)
+	if len &lt;= 1 { return head }
+
+	var (
+		lenL = (len + 1)/2
+		lenR = len - lenL
+		headL = head
+		headR *ListNode
+		dummy = &amp;ListNode{Next: head}
+		p = dummy
+	)
+	for i := 0; i &lt; lenL; i++ {
+		p = p.Next
+	}
+	headR = p.Next
+	p.Next = nil // break the link between left half and right half
+	fmt.Printf(&quot;headL=%v headR=%v\n&quot;, headL, headR)
+
+	headL = mergeSort(headL, lenL)
+	headR = mergeSort(headR, lenR)
+
+	return merge2(headL, headR)
+}
+
+func merge2(headL, headR *ListNode) *ListNode {
+	var dummy = &amp;ListNode{}
+	var pL, pR, p = headL, headR, dummy
+
+	for ; pL != nil &amp;&amp; pR != nil; {
+		if pL != nil &amp;&amp; pR != nil {
+			if pL.Val &lt; pR.Val {
+				p.Next = pL
+				pL = pL.Next
+			} else {
+				p.Next = pR
+				pR = pR.Next
+			}
+			p = p.Next
+		}
+	}
+
+	if pL != nil {
+		p.Next = pL
+	} else {
+		p.Next = pR
+	}
+
+	return dummy.Next
+}
+</code></pre>
+
+<h3 id="题解2-归并排序-快慢指针求中间节点">题解2 - 归并排序(快慢指针求中间节点)</h3>
+
+<p>等分链表也可以不求长度，改为快慢指针来找中间节点。</p>
+
+<p>细节：快慢指针的初始化，可以都用 dummy 节点，也可以 slowPtr=head, fastPtr=head.Next. 纸笔举例分析可知两种方式等效。</p>
+
+<pre><code>func sortList_fastSlowPtr(head *ListNode) *ListNode {
+	fmt.Printf(&quot;sortList_fastSlowPtr(%v)\n&quot;, head)
+	if head == nil || head.Next == nil { return head }
+
+	var (
+		headL = head
+		headR *ListNode
+		dummy = &amp;ListNode{Next: head}
+		fastPtr, slowPtr = dummy, dummy
+	)
+
+	for fastPtr != nil &amp;&amp; fastPtr.Next != nil {
+		fastPtr = fastPtr.Next.Next
+		slowPtr = slowPtr.Next
+	}
+	headR = slowPtr.Next
+	slowPtr.Next = nil
+	fmt.Printf(&quot;headL=%v headR=%v\n&quot;, headL, headR)
+
+	headL = sortList_fastSlowPtr(headL)
+	headR = sortList_fastSlowPtr(headR)
+
+	return merge2(headL, headR)
+}
+</code></pre>
+
+<h3 id="题解3-归并排序-自底向上">题解3 - 归并排序(自底向上)</h3>
+
+<p>初始时把链表视为一个个孤立的节点，每个节点都是长度为1的链表。每一轮归并相邻两子链表，经过 log(n) 轮后得到最终的有序链表。</p>
+
+<p>以 <code>-1-&gt;5-&gt;3-&gt;4-&gt;0</code> 为例，每轮归并后的结果依次为：</p>
+
+<pre><code>subList=[-1 5 3 4 0]
+subList=[-1-&gt;5 3-&gt;4 0]
+subList=[-1-&gt;3-&gt;4-&gt;5 0]
+subList=[-1-&gt;0-&gt;3-&gt;4-&gt;5]
+</code></pre>
+
+<p>细节：注意适时断开 link.</p>
+
+<pre><code>func sortList_bottomUp(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil { return head }
+
+	// put all list nodes in a slice
+	var subList []*ListNode
+	for p := head; p != nil; {
+		x := p
+		p = p.Next
+		x.Next = nil
+		subList = append(subList, x)
+	}
+
+	// merge every 2 elements in subList
+	for ; len(subList) &gt; 1; {
+		fmt.Printf(&quot;subList=%v\n&quot;, subList)
+		var subList1 []*ListNode
+		for i := 0; i &lt; len(subList); i+=2 {
+			if i + 1 &gt;= len(subList) {
+				subList = append(subList, nil) // ensure subList has even number of elements
+			}
+			subList1 = append(subList1, merge2(subList[i], subList[i+1]))
+		}
+		subList = subList1
+		subList1 = subList1[:0]
+	}
+	fmt.Printf(&quot;subList=%v\n&quot;, subList)
+
+	return subList[0]
+}
+</code></pre>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">June</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2020-08-15</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/blog/post/week2315/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Week2315</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/blog/post/arts-03/">
+            <span class="next-text nav-default">ARTS (1209-1215)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="smartjune@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/juneyuan" class="iconfont icon-github" title="github"></a>
+  <a href="https://juneyuan.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2018 - 
+    2023
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">June</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/blog/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/blog/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/blog/dist/even.min.js?v=3.2.0"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

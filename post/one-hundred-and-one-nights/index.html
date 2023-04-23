@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>一百零一夜 - June Yuan&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="June" />
+  <meta name="description" content="每天解一题。一千零一夜太长，先从一百零一夜做起。 November 2018 1101 求给定排列的字典序编号(有重复元素)。 1027 题目的基础上，做去重处理，借鉴排列组合问题中的" />
+
+  <meta name="keywords" content="blog, JuneYuan, hugo" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://juneyuan.github.io/blog/post/one-hundred-and-one-nights/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/blog/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="一百零一夜" />
+<meta property="og:description" content="每天解一题。一千零一夜太长，先从一百零一夜做起。 November 2018 1101 求给定排列的字典序编号(有重复元素)。 1027 题目的基础上，做去重处理，借鉴排列组合问题中的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://juneyuan.github.io/blog/post/one-hundred-and-one-nights/" /><meta property="article:published_time" content="2018-09-08T09:35:33&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-08T09:35:33&#43;08:00"/>
+<meta itemprop="name" content="一百零一夜">
+<meta itemprop="description" content="每天解一题。一千零一夜太长，先从一百零一夜做起。 November 2018 1101 求给定排列的字典序编号(有重复元素)。 1027 题目的基础上，做去重处理，借鉴排列组合问题中的">
+
+
+<meta itemprop="datePublished" content="2018-09-08T09:35:33&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-08T09:35:33&#43;08:00" />
+<meta itemprop="wordCount" content="2277">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="一百零一夜"/>
+<meta name="twitter:description" content="每天解一题。一千零一夜太长，先从一百零一夜做起。 November 2018 1101 求给定排列的字典序编号(有重复元素)。 1027 题目的基础上，做去重处理，借鉴排列组合问题中的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">June Yuan&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">一百零一夜</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-08 </span>
+        
+        <span class="more-meta"> 2277 words </span>
+        <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#november-2018">November 2018</a>
+<ul>
+<li><a href="#1101">1101</a></li>
+<li><a href="#1102">1102</a></li>
+<li><a href="#1103">1103</a></li>
+<li><a href="#1104">1104</a></li>
+<li><a href="#1105">1105</a></li>
+<li><a href="#1106">1106</a></li>
+<li><a href="#1107">1107</a></li>
+<li><a href="#1108">1108</a></li>
+<li><a href="#1109">1109</a></li>
+<li><a href="#1110-1118">1110～1118</a></li>
+<li><a href="#1119">1119</a></li>
+</ul></li>
+<li><a href="#october-2018">October 2018</a>
+<ul>
+<li><a href="#1001">1001</a></li>
+<li><a href="#1002">1002</a></li>
+<li><a href="#1003">1003</a></li>
+<li><a href="#1004">1004</a></li>
+<li><a href="#1005">1005</a></li>
+<li><a href="#1006">1006</a></li>
+<li><a href="#1007">1007</a></li>
+<li><a href="#1008">1008</a></li>
+<li><a href="#1009">1009</a></li>
+<li><a href="#1010">1010</a></li>
+<li><a href="#1011">1011</a></li>
+<li><a href="#1012">1012</a></li>
+<li><a href="#1014">1014</a></li>
+<li><a href="#1015">1015</a></li>
+<li><a href="#1016">1016</a></li>
+<li><a href="#1017">1017</a></li>
+<li><a href="#1018">1018</a></li>
+<li><a href="#1019">1019</a></li>
+<li><a href="#1020">1020</a></li>
+<li><a href="#1021">1021</a></li>
+<li><a href="#1022">1022</a></li>
+<li><a href="#1023">1023</a></li>
+<li><a href="#1024">1024</a></li>
+<li><a href="#1025">1025</a></li>
+<li><a href="#1026">1026</a></li>
+<li><a href="#1027">1027</a></li>
+<li><a href="#1028">1028</a></li>
+<li><a href="#1029">1029</a></li>
+<li><a href="#1030">1030</a></li>
+<li><a href="#1031">1031</a></li>
+</ul></li>
+<li><a href="#september-2018">September 2018</a>
+<ul>
+<li><a href="#0905">0905</a></li>
+<li><a href="#0906">0906</a></li>
+<li><a href="#0907">0907</a>
+<ul>
+<li><a href="#思路">思路</a></li>
+</ul></li>
+<li><a href="#0908">0908</a></li>
+<li><a href="#0909">0909</a></li>
+<li><a href="#0910">0910</a></li>
+<li><a href="#0911">0911</a></li>
+<li><a href="#0912">0912</a></li>
+<li><a href="#0913">0913</a>
+<ul>
+<li><a href="#思路-1">思路</a></li>
+</ul></li>
+<li><a href="#0914">0914</a></li>
+<li><a href="#0915">0915</a>
+<ul>
+<li><a href="#思路-2">思路</a></li>
+</ul></li>
+<li><a href="#0916">0916</a></li>
+<li><a href="#0917">0917</a></li>
+<li><a href="#0918">0918</a></li>
+<li><a href="#0919">0919</a>
+<ul>
+<li><a href="#思路-3">思路</a></li>
+</ul></li>
+<li><a href="#0920">0920</a></li>
+<li><a href="#0921">0921</a></li>
+<li><a href="#0922">0922</a></li>
+<li><a href="#0933">0933</a></li>
+<li><a href="#0924">0924</a></li>
+<li><a href="#0925">0925</a></li>
+<li><a href="#0926">0926</a></li>
+<li><a href="#0927">0927</a></li>
+<li><a href="#0928">0928</a></li>
+<li><a href="#0929">0929</a></li>
+<li><a href="#0930">0930</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<p>每天解一题。一千零一夜太长，先从一百零一夜做起。</p>
+
+<h1 id="november-2018">November 2018</h1>
+
+<h2 id="1101">1101</h2>
+
+<p>求给定排列的字典序编号(有重复元素)。</p>
+
+<p>1027 题目的基础上，做去重处理，借鉴排列组合问题中的除法运算。</p>
+
+<h2 id="1102">1102</h2>
+
+<p>同 1101</p>
+
+<h2 id="1103">1103</h2>
+
+<p>Space Replacement (&rsquo; &lsquo; -&gt; &lsquo;%20&rsquo;)</p>
+
+<h2 id="1104">1104</h2>
+
+<p>NULL</p>
+
+<h2 id="1105">1105</h2>
+
+<p>NULL</p>
+
+<h2 id="1106">1106</h2>
+
+<p>NULL</p>
+
+<h2 id="1107">1107</h2>
+
+<p>Permutation Sequence (给定正整数 <code>n</code> 和 <code>k</code>, 求 <code>1 ~ n</code> 的整数组成的第 <code>k</code> 个排列。)</p>
+
+<p>处理过程有点类似进制转换。</p>
+
+<h2 id="1108">1108</h2>
+
+<p>The same as 1101.</p>
+
+<h2 id="1109">1109</h2>
+
+<p>最长回文子串。</p>
+
+<h2 id="1110-1118">1110～1118</h2>
+
+<p>NULL * 9</p>
+
+<h2 id="1119">1119</h2>
+
+<p>Remove Duplicates from Sorted List II (None of the duplicates is remained).</p>
+
+<h1 id="october-2018">October 2018</h1>
+
+<h2 id="1001">1001</h2>
+
+<p>查找子串在父串中第一次出现的位置。</p>
+
+<p>写了一个非 KMP 的解法。</p>
+
+<h2 id="1002">1002</h2>
+
+<p>二叉搜索树插入节点。</p>
+
+<p>递归解法。</p>
+
+<h2 id="1003">1003</h2>
+
+<p>同上题。非递归写法。</p>
+
+<h2 id="1004">1004</h2>
+
+<p>验证一棵树是否二叉搜索树。</p>
+
+<p>递归求解。</p>
+
+<h2 id="1005">1005</h2>
+
+<p>同上题。非递归求解。（联想二叉树中序遍历）</p>
+
+<h2 id="1006">1006</h2>
+
+<p>将有序数组转化为二叉搜索树。</p>
+
+<p>折半取中，递归实现。</p>
+
+<h2 id="1007">1007</h2>
+
+<p>有序链表转换二叉搜索树。</p>
+
+<p>O(nlgn) 实现。</p>
+
+<h2 id="1008">1008</h2>
+
+<p>同上题。O(n) 实现。</p>
+
+<h2 id="1009">1009</h2>
+
+<p>二叉搜索树迭代器。</p>
+
+<h2 id="1010">1010</h2>
+
+<p>二叉搜索树的最小绝对差。</p>
+
+<h2 id="1011">1011</h2>
+
+<p>求二叉搜索树中处于 [k1, k2] 区间范围的节点。</p>
+
+<p>中序遍历即可。递归写法可以加“剪枝”处理——跳过不可能有解的节点。</p>
+
+<h2 id="1012">1012</h2>
+
+<p>从中序与后序遍历序列构造二叉树。（与 0918 题目对偶）</p>
+
+<h2 id="1014">1014</h2>
+
+<p>求两个字符串的最长公共子串。</p>
+
+<p>写了暴力枚举的解法。</p>
+
+<h2 id="1015">1015</h2>
+
+<p>实现 LRU 缓存机制。</p>
+
+<p>链表题，关键是如何锁定到用链表这种数据结构实现。比如自己本来想到过 PriorityQueue.</p>
+
+<h2 id="1016">1016</h2>
+
+<p>给定两个字符串 A 和 B, 判断 B 的字符是否全被 A 包含（次数也要考虑）。</p>
+
+<h2 id="1017">1017</h2>
+
+<p>判断给定字符串中的 alphanumeric character 是否构成回文（忽略大小写）。</p>
+
+<h2 id="1018">1018</h2>
+
+<p>报数。给出数列前几项：1, 11, 21, 1211, 111221, &hellip; 每一项的生成规则就是，对前一项进行报数。求第 n 项的报数结果。</p>
+
+<h2 id="1019">1019</h2>
+
+<p>同上题。递归求解。</p>
+
+<h2 id="1020">1020</h2>
+
+<p>字母异位词分组。</p>
+
+<p>brute-force solution&hellip;</p>
+
+<h2 id="1021">1021</h2>
+
+<p>同上题。</p>
+
+<p>排序 + hashmap 降低时间复杂度。</p>
+
+<h2 id="1022">1022</h2>
+
+<p>Valid Anagram.</p>
+
+<p>method1: hashmap;
+method2: sort.</p>
+
+<h2 id="1023">1023</h2>
+
+<p>NULL
+（累且困，睡了）</p>
+
+<h2 id="1024">1024</h2>
+
+<p>Next Permutation.</p>
+
+<p>字典序算法。</p>
+
+<h2 id="1025">1025</h2>
+
+<p>给定数组，求其元素的全排列。</p>
+
+<p>两种递归写法。一种思路是，枚举每个位置可能的元素；另一种是枚举每个元素可能的位置。</p>
+
+<h2 id="1026">1026</h2>
+
+<p>Previous Permutation.</p>
+
+<p><code>Next Permutation</code> 的对偶问题，解法一样。</p>
+
+<h2 id="1027">1027</h2>
+
+<p>求给定排列的字典序编号（无重复元素）。</p>
+
+<p>用一个具体例子，如 <code>[4, 3, 2, 1]</code>, 从高位到低位（或相反方向）分析计算，容易找到规律，再转化为代码即可。</p>
+
+<h2 id="1028">1028</h2>
+
+<p>NULL
+（too occupied by the messy room）</p>
+
+<h2 id="1029">1029</h2>
+
+<p>最后一个单词的长度。</p>
+
+<h2 id="1030">1030</h2>
+
+<p>翻转字符串里的单词。</p>
+
+<h2 id="1031">1031</h2>
+
+<p>旋转字符串。</p>
+
+<h1 id="september-2018">September 2018</h1>
+
+<h2 id="0905">0905</h2>
+
+<p>后续遍历二叉树，非递归实现</p>
+
+<h2 id="0906">0906</h2>
+
+<p>leet 842 Split Array into Fibonacci Sequence, 未 AC</p>
+
+<h2 id="0907">0907</h2>
+
+<p>承前</p>
+
+<h3 id="思路">思路</h3>
+
+<p>指定前两个数字，记为 <code>s0</code> 和 <code>s1</code>，就可以顺着 Fibonacci 数列的定义往后递推，得到一个期望中的序列。比较期望序列与待拆分串，可知该串有解无解。至于输出具体的拆分结果，只需要在递推过程中加以记录即可。有了对于具体 (<code>s0</code>, <code>s1</code>) 的求解思路，接下来只需要枚举所有可能的 (<code>s0</code>, <code>s1</code>) 组合。</p>
+
+<p>这道题 corner case 比较多，如：有前导 0 的串视为非法、拆分出的每个数必须在 int 能表示的范围内（即 32 位有符号整数类型）等。循环递推过程的实现，也比较考验代码表达能力。</p>
+
+<h2 id="0908">0908</h2>
+
+<p>中续遍历二叉树，非递归实现</p>
+
+<h2 id="0909">0909</h2>
+
+<p>删除链表中等于给定值 val 的所有节点</p>
+
+<h2 id="0910">0910</h2>
+
+<p>层序遍历二叉树</p>
+
+<h2 id="0911">0911</h2>
+
+<p>层序遍历二叉树II（自底向上）</p>
+
+<h2 id="0912">0912</h2>
+
+<p>设计循环双端队列</p>
+
+<h2 id="0913">0913</h2>
+
+<p>求二叉树的最大深度</p>
+
+<h3 id="思路-1">思路</h3>
+
+<p>跟遍历类似，也是可递归、可迭代</p>
+
+<h2 id="0914">0914</h2>
+
+<p>NULL
+（团建、临时情况、赶火车等等，missed）</p>
+
+<h2 id="0915">0915</h2>
+
+<p>判断是否平衡二叉树。</p>
+
+<h3 id="思路-2">思路</h3>
+
+<p>最开始想到的是……，比较笨拙。</p>
+
+<h2 id="0916">0916</h2>
+
+<p>锯齿形层次遍历二叉树</p>
+
+<h2 id="0917">0917</h2>
+
+<p>镜像反转二叉树。</p>
+
+<p>非常简单，仅仅在层序遍历的基础上，处理每个节点之前先交换其左右孩子。</p>
+
+<h2 id="0918">0918</h2>
+
+<p>从前序与中序遍历序列构造二叉树。</p>
+
+<p>递归，关键在于递归调用的传参（几个下标）以及终止条件控制。</p>
+
+<h2 id="0919">0919</h2>
+
+<p>判断一个树（T2）是否另一个树（T1）的子树。</p>
+
+<h3 id="思路-3">思路</h3>
+
+<p>简单直接的想法，枚举 T1 的每个子树，比较其与 T2 是否相等。枚举 T1 的子树其实就是遍历所有节点，可以用 BFS 比较快。比较两树是否相等则可通过递归。</p>
+
+<p>或者，<code>isSubtree</code> 判断子树的函数本身也可以递归——要么 T1 与 T2 相等则肯定是子树；要么进一步对 (T1.left, T2) 以及 (T1.right, T2) 判断是否子树。</p>
+
+<h2 id="0920">0920</h2>
+
+<p>给定一棵二叉树，找到两个节点的最近公共父节点(LCA)。</p>
+
+<h2 id="0921">0921</h2>
+
+<p>题目同昨天。解法：dfs 求出树的所有路径（从根节点到达任一叶节点），从中 pick 出节点 A, B 分别归属的路径（可能是两条，也可能是同一条），沿着这条路径寻找 LCA.</p>
+
+<p>写了一个巨复杂的 <code>dfs()</code>, 然后学着改为 normal 的 dfs.</p>
+
+<h2 id="0922">0922</h2>
+
+<p>求二叉树中能连接两个叶子结点的最长路径（两个叶节点未指定）。</p>
+
+<p>思路：与 LCA 很接近。</p>
+
+<h2 id="0933">0933</h2>
+
+<p>求二叉树最大路径和（不一定包含根节点）。</p>
+
+<h2 id="0924">0924</h2>
+
+<p>二叉树的序列化和反序列化。</p>
+
+<p>序列化：递归实现前序遍历（后序、层序遍历也可以），稍有不同的是，通常的遍历不用处理叶子结点的孩子，这里需要在叶子结点的孩子处设置“哨兵”（sentinel）；</p>
+
+<p>反序列化：读取序列化字符串，如果遇到“哨兵”则忽略，如果遇到正常的节点 value, 就创建对应的节点，并对其左右孩子作相同处理。递归实现较为方便。</p>
+
+<h2 id="0925">0925</h2>
+
+<p>从后序与中序遍历序列构造二叉树。</p>
+
+<h2 id="0926">0926</h2>
+
+<p>三道位操作的题目——</p>
+
+<ol>
+<li>找出 2*n+1 数组中的单数（共有 2*n+1 个数，有且仅有一个落单，其余均出现两次）</li>
+<li>找出 2*n+2 数组中的单数（共有 2*n+2 个数，有且仅有两个落单，其余均出现两次）</li>
+<li>找出 3*n+1 数组中的单数（共有 3*n+1 个数，有且仅有一个落单，其余均出现三次）</li>
+</ol>
+
+<p>3 的求解，涉及到二进制转十进制，宜用位操作计算。然答题的时候偷懒，用了 Math.power() 函数，竟 WA. 琢磨了会，发现 <code>(int) Math.power(2, 31)</code> 结果不正确——期望得数为 <code>2147483648</code>, 实际为 <code>2147483647</code>。应该与浮点数强转为 <code>int</code> 时丢失精度有关，改为 <code>(long) Math.power(2, 31)</code> 则结果正确。顺带复习了<strong>二进制补码</strong>。</p>
+
+<h2 id="0927">0927</h2>
+
+<p>判断一个整数是否2的幂。</p>
+
+<p>key: 整数 <code>x</code> 是2的幂 &lt;==&gt; <code>x &amp; (x - 1) == 0</code></p>
+
+<h2 id="0928">0928</h2>
+
+<p>用栈实现队列。</p>
+
+<p>第一次提交时 <code>empty()</code> 方法有错误，应该是当两个栈都为空，才返回 true.</p>
+
+<h2 id="0929">0929</h2>
+
+<p>用队列实现栈。</p>
+
+<p>跟上一题类似的是，一个队列用来进出元素、另一个用作中转站；不同的是，上一题中转的时候将所有元素都放入了中转站，而这一题作中转的时候则保留了最后一个元素，并且负责进出元素的队列和作为中转站的队列，是交替变换的。</p>
+
+<p>more: <a href="http://www.cnblogs.com/kaituorensheng/archive/2013/03/02/2939690.html">http://www.cnblogs.com/kaituorensheng/archive/2013/03/02/2939690.html</a></p>
+
+<h2 id="0930">0930</h2>
+
+<p>Determine the number of bits required to flip if you want to convert integer n to integer m.
+（相当于求两个数不同的比特位数。）</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">June</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-09-08</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/blog/post/pseudo-bug-caused-by-cache/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">修改缓存逻辑引起的一个伪bug</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/blog/post/recursion-and-induction/">
+            <span class="next-text nav-default">借助数学归纳法理解递归</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="smartjune@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/juneyuan" class="iconfont icon-github" title="github"></a>
+  <a href="https://juneyuan.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2018 - 
+    2023
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">June</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/blog/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/blog/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/blog/dist/even.min.js?v=3.2.0"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
