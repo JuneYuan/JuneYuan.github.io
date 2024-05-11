@@ -4,7 +4,7 @@ defaultContentLanguage = "en"                             # en / zh-cn / ... (Th
 title = "June Yuan's Blog"
 enableRobotsTXT = true
 enableEmoji = true
-theme = "even"
+theme = "github-style"
 
 preserveTaxonomyNames = true
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
