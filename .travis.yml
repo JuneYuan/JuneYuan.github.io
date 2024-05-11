@@ -8,7 +8,7 @@ before_script:
 
 # Build the website
 script:
-  - binary/hugo --theme=even
+  - binary/hugo --theme=github-style
   # - echo 'juneyuan.github.io/blog' > public/CNAME
 # Deploy to GitHub pages
 deploy:
